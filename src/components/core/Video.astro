@@ -4,12 +4,7 @@ import "plyr/dist/plyr.css";
 const { id } = Astro.props;
 ---
 
-<div
-  id="player"
-  data-plyr-provider="youtube"
-  data-plyr-embed-id={id}
->
-</div>
+<div id="player" data-plyr-provider="youtube" data-plyr-embed-id={id}></div>
 
 <script>
   import initPlyr from "@/lib/initPlyr";
