@@ -1,0 +1,162 @@
+---
+import { Button } from '@/components/ui/button'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+---
+
+<BaseLayout
+  title="JobLens"
+  description="Generate cleaner Brave Search queries for direct-source job hunting and follow the roadmap toward a private tracked-jobs dashboard."
+>
+  <div class="flex flex-col">
+    <section class="px-4 pt-8 pb-18 md:px-8 md:pt-10 md:pb-24">
+      <div class="mx-auto grid w-full max-w-6xl gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+        <div class="space-y-8 rounded-lg border border-border bg-background-1 p-6 md:p-8">
+          <div class="space-y-4">
+            <p class="font-mono text-xs tracking-[0.24em] text-accent-1 uppercase">Phase One</p>
+            <h1 class="font-display text-5xl leading-tight font-semibold tracking-tight text-foreground-0 md:text-7xl">
+              Search the real job source with less noise.
+            </h1>
+            <p class="max-w-2xl text-lg leading-relaxed text-foreground-1 md:text-xl">
+              JobLens starts with a public Brave query generator tuned for direct-source discovery. Later, the private
+              dashboard will track the jobs we ingest from trusted ATS and career pages.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap gap-3">
+            <a href="#query-mode">
+              <Button size="lg" className="px-6">Try query mode</Button>
+            </a>
+            <a href="#roadmap">
+              <Button size="lg" variant="outline" className="px-6">See roadmap</Button>
+            </a>
+          </div>
+
+          <div class="grid gap-4 pt-4 md:grid-cols-3">
+            <div class="rounded-lg border border-border bg-background-0 p-4">
+              <p class="font-mono text-xs tracking-[0.18em] text-foreground-3 uppercase">Goal</p>
+              <p class="mt-3 text-sm leading-relaxed text-foreground-1">
+                Prefer employer pages and ATS-hosted application flows over job board detours.
+              </p>
+            </div>
+            <div class="rounded-lg border border-border bg-background-0 p-4">
+              <p class="font-mono text-xs tracking-[0.18em] text-foreground-3 uppercase">Method</p>
+              <p class="mt-3 text-sm leading-relaxed text-foreground-1">
+                Combine Brave operators, curated source rules, and our own growing Goggle strategy.
+              </p>
+            </div>
+            <div class="rounded-lg border border-border bg-background-0 p-4">
+              <p class="font-mono text-xs tracking-[0.18em] text-foreground-3 uppercase">Future</p>
+              <p class="mt-3 text-sm leading-relaxed text-foreground-1">
+                Invite-only dashboard with tracked jobs, grouping, and source-aware filtering.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div id="query-mode" class="rounded-lg border border-border bg-background-1 p-6 md:p-8">
+          <div class="space-y-5">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <p class="font-mono text-xs tracking-[0.24em] text-accent-1 uppercase">Public webapp</p>
+                <h2 class="mt-2 font-display text-3xl text-foreground-0">Brave query mode</h2>
+              </div>
+              <span class="rounded-full border border-border bg-background-0 px-3 py-1 font-mono text-xs text-foreground-2">
+                Static-first
+              </span>
+            </div>
+
+            <div class="space-y-3 rounded-lg border border-border bg-background-0 p-4">
+              <div>
+                <p class="mb-2 font-mono text-xs tracking-[0.16em] text-foreground-3 uppercase">Intent</p>
+                <p class="text-sm text-foreground-1">Platform engineer, remote-friendly, direct apply, senior level</p>
+              </div>
+              <div>
+                <p class="mb-2 font-mono text-xs tracking-[0.16em] text-foreground-3 uppercase">Generated query</p>
+                <code class="block rounded border border-border bg-background-1 p-3 text-sm leading-relaxed text-accent-1">
+                  "platform engineer" ("careers" OR "jobs") ("remote" OR "distributed")
+                  -indeed -linkedin -glassdoor (site:greenhouse.io OR site:ashbyhq.com OR site:lever.co)
+                </code>
+              </div>
+            </div>
+
+            <ul class="grid gap-3 text-sm text-foreground-1">
+              <li class="rounded-lg border border-border bg-background-0 p-4">Generate a query quickly from role, location, remote preference, and source profile.</li>
+              <li class="rounded-lg border border-border bg-background-0 p-4">Stay usable as a fully static site hosted cheaply at <code>joblens.hyperoot.dev</code>.</li>
+              <li class="rounded-lg border border-border bg-background-0 p-4">Expose the dashboard later without forcing auth into the public experience on day one.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tracked-sources" class="px-4 py-18 md:px-8 md:py-24">
+      <div class="mx-auto w-full max-w-6xl rounded-lg border border-border bg-background-1 p-6 md:p-8">
+        <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+          <div class="space-y-4">
+            <p class="font-mono text-xs tracking-[0.24em] text-accent-1 uppercase">Tracked sources</p>
+            <h2 class="font-display text-4xl leading-tight text-foreground-0 md:text-5xl">
+              Direct-source search today, structured ingestion next.
+            </h2>
+            <p class="text-lg leading-relaxed text-foreground-1">
+              The public side helps people search better immediately. The private side will ingest jobs from known ATS
+              and careers sources so we can organize what is actually available.
+            </p>
+          </div>
+
+          <div class="grid gap-4 md:grid-cols-2">
+            <div class="rounded-lg border border-border bg-background-0 p-5">
+              <p class="font-mono text-xs tracking-[0.16em] text-foreground-3 uppercase">Likely sources</p>
+              <p class="mt-3 text-sm leading-relaxed text-foreground-1">
+                Greenhouse, Ashby, Lever, Workday, and custom career pages discovered through curated search rules.
+              </p>
+            </div>
+            <div class="rounded-lg border border-border bg-background-0 p-5">
+              <p class="font-mono text-xs tracking-[0.16em] text-foreground-3 uppercase">Noise control</p>
+              <p class="mt-3 text-sm leading-relaxed text-foreground-1">
+                We can downrank or discard aggregator-heavy paths while still treating ATS-hosted apply pages as genuine.
+              </p>
+            </div>
+            <div class="rounded-lg border border-border bg-background-0 p-5">
+              <p class="font-mono text-xs tracking-[0.16em] text-foreground-3 uppercase">Data ownership</p>
+              <p class="mt-3 text-sm leading-relaxed text-foreground-1">
+                Curated Goggles, source rules, and fixtures live at the repo level so multiple services can grow around them.
+              </p>
+            </div>
+            <div class="rounded-lg border border-border bg-background-0 p-5">
+              <p class="font-mono text-xs tracking-[0.16em] text-foreground-3 uppercase">Access model</p>
+              <p class="mt-3 text-sm leading-relaxed text-foreground-1">
+                The future dashboard stays invite-only while the infrastructure, curation, and ingestion quality mature.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="roadmap" class="px-4 pb-18 md:px-8 md:pb-24">
+      <div class="mx-auto grid w-full max-w-6xl gap-4 md:grid-cols-3">
+        <div class="rounded-lg border border-border bg-background-1 p-6">
+          <p class="font-mono text-xs tracking-[0.18em] text-accent-1 uppercase">Now</p>
+          <h3 class="mt-3 font-display text-2xl text-foreground-0">Public query builder</h3>
+          <p class="mt-3 text-sm leading-relaxed text-foreground-1">
+            Static landing page, opinionated Brave query generation, and better direct-source discovery workflows.
+          </p>
+        </div>
+        <div class="rounded-lg border border-border bg-background-1 p-6">
+          <p class="font-mono text-xs tracking-[0.18em] text-accent-1 uppercase">Next</p>
+          <h3 class="mt-3 font-display text-2xl text-foreground-0">Private dashboard</h3>
+          <p class="mt-3 text-sm leading-relaxed text-foreground-1">
+            Invite-only interface on <code>app.joblens.hyperoot.dev</code> for tracked jobs, organization, and filtering.
+          </p>
+        </div>
+        <div class="rounded-lg border border-border bg-background-1 p-6">
+          <p class="font-mono text-xs tracking-[0.18em] text-accent-1 uppercase">Later</p>
+          <h3 class="mt-3 font-display text-2xl text-foreground-0">Service expansion</h3>
+          <p class="mt-3 text-sm leading-relaxed text-foreground-1">
+            Add ingestion, enrichment, and API services once the public experience and source model are stable.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

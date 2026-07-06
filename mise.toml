@@ -20,10 +20,6 @@ _.path = ['{{config_root}}/node_modules/.bin']
 description = "Dev Mode"
 run = "astro dev --host 0.0.0.0"
 
-[tasks.dicon]
-description = "Downloads an SVG from svgrepo and saves it to src/assets/icons/"
-run = "bash ./scripts/download-icon.sh"
-
 [tasks.biome]
 description = "Run Biome checks and apply safe fixes"
 run = "biome check --write . && biome format --write ."

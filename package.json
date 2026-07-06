@@ -1,0 +1,17 @@
+{
+  "name": "joblens",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@10.17.0",
+  "scripts": {
+    "biome:check": "biome check .",
+    "biome:write": "biome check --write .",
+    "format": "biome format --write .",
+    "dev:webapp": "pnpm --dir services/webapp dev",
+    "build:webapp": "pnpm --dir services/webapp build",
+    "preview:webapp": "pnpm --dir services/webapp preview"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.0"
+  }
+}

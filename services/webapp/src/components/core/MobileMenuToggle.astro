@@ -1,0 +1,78 @@
+---
+import { Menu, X } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+---
+
+<!-- Toggle button -->
+<div class="md:hidden">
+  <Button data-mobile-menu-toggle aria-label="Toggle menu" aria-expanded="false" size="icon" variant="outline">
+    <span aria-hidden="true" data-icon-open>
+      <Menu />
+    </span>
+    <span aria-hidden="true" data-icon-close class="hidden">
+      <X />
+    </span>
+  </Button>
+</div>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const toggleBtn = document.querySelector("[data-mobile-menu-toggle]");
+    const menu = document.querySelector("[data-mobile-menu]");
+    if (!toggleBtn || !menu) return;
+
+    const iconOpen = toggleBtn.querySelector("[data-icon-open]");
+    const iconClose = toggleBtn.querySelector("[data-icon-close]");
+    const headerShell = document.querySelector("[data-header-shell]");
+    const headerNav = document.querySelector("[data-header-nav]");
+
+    const syncPanelPosition = () => {
+      if (!(menu instanceof HTMLElement)) return;
+      const navRect = headerNav instanceof HTMLElement ? headerNav.getBoundingClientRect() : null;
+      menu.style.top = navRect ? `${navRect.bottom}px` : "0px";
+    };
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+
+    function setOpen(open: boolean) {
+      (menu as HTMLElement).setAttribute("data-open", String(open));
+      (menu as HTMLElement).setAttribute("aria-hidden", String(!open));
+      (toggleBtn as HTMLElement).setAttribute("aria-expanded", String(open));
+      iconOpen && iconOpen.classList.toggle("hidden", open);
+      iconClose && iconClose.classList.toggle("hidden", !open);
+      if (headerShell instanceof HTMLElement) headerShell.dataset.menuOpen = String(open);
+      if (headerNav instanceof HTMLElement) headerNav.dataset.menuOpen = String(open);
+
+      if (open) {
+        syncPanelPosition();
+        document.addEventListener("keydown", onKey);
+        document.dispatchEvent(new CustomEvent("mobile-menu:opened"));
+      } else {
+        if (headerShell instanceof HTMLElement) headerShell.dataset.menuOpen = "false";
+        if (headerNav instanceof HTMLElement) headerNav.dataset.menuOpen = "false";
+        document.removeEventListener("keydown", onKey);
+        (toggleBtn as HTMLElement).focus();
+        document.dispatchEvent(new CustomEvent("mobile-menu:closed"));
+      }
+    }
+
+    syncPanelPosition();
+    window.addEventListener("resize", syncPanelPosition, { passive: true });
+
+    toggleBtn.addEventListener("click", () => setOpen(menu.getAttribute("data-open") !== "true"));
+    menu.addEventListener("click", (e) => {
+      const target = e.target;
+      if (!(target instanceof Element)) return;
+      if (target.closest("a") || target.closest("button")) setOpen(false);
+    });
+
+    document.addEventListener("astro:before-swap", () => {
+      if (headerShell instanceof HTMLElement) headerShell.dataset.menuOpen = "false";
+      if (headerNav instanceof HTMLElement) headerNav.dataset.menuOpen = "false";
+      document.removeEventListener("keydown", onKey);
+      window.removeEventListener("resize", syncPanelPosition);
+    }, { once: true });
+  });
+</script>
