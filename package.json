@@ -12,6 +12,6 @@
     "preview:webapp": "pnpm --dir services/webapp preview"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.0"
+    "@biomejs/biome": "2.5.4"
   }
 }
